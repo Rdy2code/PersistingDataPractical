@@ -21,11 +21,14 @@ android {
 
 dependencies {
 
-    def version = '1.1.0'
+    def supportVersion = '1.1.0'
+    def roomVersion = '2.2.4'
 
-    implementation "androidx.appcompat:appcompat:$version"
-    implementation "com.google.android.material:material:$version"
+    implementation "androidx.appcompat:appcompat:$supportVersion"
+    implementation "com.google.android.material:material:$supportVersion"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     debugImplementation 'im.dino:dbinspector:4.0.0'
+    implementation "androidx.room:room-common:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 }
