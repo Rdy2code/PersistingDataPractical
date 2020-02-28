@@ -29,6 +29,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     debugImplementation 'im.dino:dbinspector:4.0.0'
+
+    //Room dependencies
     implementation "androidx.room:room-common:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation 'androidx.room:room-runtime:2.2.4'
 }
