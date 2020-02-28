@@ -36,4 +36,8 @@ public abstract class TopsyTurveyDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    //These abstract methods are used to get a handle to the Dao and its methods
+    public abstract RecipeDao recipeDao();
+    public abstract RecipeStepDao recipeStepDao();
+
 }
