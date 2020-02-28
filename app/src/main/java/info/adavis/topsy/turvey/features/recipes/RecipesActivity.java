@@ -1,5 +1,6 @@
 package info.adavis.topsy.turvey.features.recipes;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.adavis.topsy.turvey.R;
@@ -41,24 +43,33 @@ public class RecipesActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume ()
-    {
+    protected void onResume () {
         super.onResume();
-        dataSource.open();
+        new AsyncTask<Void, Void, List<Recipe>>() {
 
-        //Add recipes to the database. For testing purposes, use a static list from the DataProvider
-        //and a for loop to iterate the list. Can this logic be placed in the abstraction layer?
-        for (Recipe recipe : RecipesDataProvider.recipesList) {
-            dataSource.createRecipe(recipe);
-        }
+            @Override
+            protected List<Recipe> doInBackground(Void... voids) {
+                //Add recipes to the database. For testing purposes, use a static list from the DataProvider
+                //and a for loop to iterate the list. Can this logic be placed in the abstraction layer?
+                for (Recipe recipe : RecipesDataProvider.recipesList) {
+                    dataSource.createRecipe(recipe);
+                }
+                return new ArrayList<>();
+            }
 
-        List<Recipe> recipes = getRecipes();
-        Recipe updatedRecipe = recipes.get(0);
-        //updatedRecipe.setName("Yellow Cake");
+            @Override
+            protected void onPostExecute(List<Recipe> recipes) {
+                super.onPostExecute(recipes);
+            }
+        }.execute();
 
-        //dataSource.deleteRecipe(updatedRecipe);
-        //dataSource.deleteAllRecipes();
-        getRecipes();
+//        List<Recipe> recipes = getRecipes();
+//        Recipe updatedRecipe = recipes.get(0);
+//        updatedRecipe.setName("Yellow Cake");
+//
+//        dataSource.deleteRecipe(updatedRecipe);
+//        dataSource.deleteAllRecipes();
+//        getRecipes();
     }
 
     private List<Recipe> getRecipes() {
@@ -71,21 +82,11 @@ public class RecipesActivity extends AppCompatActivity
         return recipes;
     }
 
-    @Override
-    protected void onPause ()
-    {
-        super.onPause();
-        dataSource.close();
-    }
-
-    private void setupRecyclerView ()
-    {
+    private void setupRecyclerView () {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recipesRecyclerView.setLayoutManager(layoutManager);
-
         recipesRecyclerView.setHasFixedSize(true);
-
         adapter = new RecipesAdapter( this );
         recipesRecyclerView.setAdapter( adapter );
     }
