@@ -1,17 +1,30 @@
 package info.adavis.topsy.turvey.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 
+@Entity
 public class Recipe
 {
+    @PrimaryKey (autoGenerate = true)
     private long id;
 
+    @ColumnInfo
     private String name;
 
+    @ColumnInfo
     private String description;
 
+    @ColumnInfo (name = "image_resource_id")
     private int imageResourceId;
 
+    //Support for List fields is not available out of the box, use the @Ignore to prevent Room
+    //from trying to process the steps
+    @Ignore
     private List<RecipeStep> steps;
 
     public Recipe (String name, String description, int imageResourceId)
