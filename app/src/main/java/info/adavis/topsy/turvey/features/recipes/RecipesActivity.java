@@ -1,21 +1,26 @@
 package info.adavis.topsy.turvey.features.recipes;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import info.adavis.topsy.turvey.R;
 import info.adavis.topsy.turvey.db.RecipesDataProvider;
 import info.adavis.topsy.turvey.db.TopsyTurvyDataSource;
 import info.adavis.topsy.turvey.models.Recipe;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+
 
 public class RecipesActivity extends AppCompatActivity
 {
@@ -25,6 +30,7 @@ public class RecipesActivity extends AppCompatActivity
     private RecipesAdapter adapter;
     //Need to open and close the database based on app lifecycle
     private TopsyTurvyDataSource dataSource;
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,25 +51,31 @@ public class RecipesActivity extends AppCompatActivity
     @Override
     protected void onResume () {
         super.onResume();
-        new AsyncTask<Void, Void, List<Recipe>>() {
 
+        //Observe the call on the main thread using RxJava. Always store as disposable.
+        disposable = dataSource.getAllRecipes()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Recipe>>() {
+                    @Override
+                    public void accept(List<Recipe> recipes) throws Exception {
+                        adapter.setRecipes(recipes);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+        //Instead of an AsyncTask, we use a Completable.fromCallable() to do the background work
+        Completable.fromCallable(new Callable<Void>() {
             @Override
-            protected List<Recipe> doInBackground(Void... voids) {
-                //Add recipes to the database. For testing purposes, use a static list from the DataProvider
-                //and a for loop to iterate the list. Can this logic be placed in the abstraction layer?
+            public Void call() throws Exception {
                 for (Recipe recipe : RecipesDataProvider.recipesList) {
                     dataSource.createRecipe(recipe);
                 }
-                return dataSource.getAllRecipes();
+                //Null for now, since not doing anything with the results for the moment
+                return null;
             }
-
-            @Override
-            protected void onPostExecute(List<Recipe> recipes) {
-                super.onPostExecute(recipes);
-                adapter.setRecipes(recipes);
-                adapter.notifyDataSetChanged();
-            }
-        }.execute();
+        })
+                .subscribeOn(Schedulers.io())
+                .subscribe();
     }
 
     private void setupRecyclerView () {
@@ -73,5 +85,12 @@ public class RecipesActivity extends AppCompatActivity
         recipesRecyclerView.setHasFixedSize(true);
         adapter = new RecipesAdapter( this );
         recipesRecyclerView.setAdapter( adapter );
+    }
+
+    //Dispose of anything we subscribe to or observe
+    @Override
+    protected void onDestroy() {
+        disposable.dispose();
+        super.onDestroy();
     }
 }

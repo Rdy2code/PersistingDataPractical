@@ -17,12 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
 
     def supportVersion = '1.1.0'
     def roomVersion = '2.2.4'
+    def rxJavaVersion = '2.1.0'
 
     implementation "androidx.appcompat:appcompat:$supportVersion"
     implementation "com.google.android.material:material:$supportVersion"
@@ -33,5 +38,10 @@ dependencies {
     //Room dependencies
     implementation "androidx.room:room-common:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
-    implementation 'androidx.room:room-runtime:2.2.4'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import info.adavis.topsy.turvey.models.Recipe;
 import info.adavis.topsy.turvey.models.RecipeStep;
+import io.reactivex.Flowable;
 
 public class TopsyTurvyDataSource {
 
@@ -39,12 +40,7 @@ public class TopsyTurvyDataSource {
         Log.d(TAG, "createRecipe: the id: " + rowId);
     }
 
-    public List<Recipe> getAllRecipes() {
-        List<Recipe> recipes = recipeDao.getAllRecipes();
-        for (Recipe recipe : recipes) {
-            List<RecipeStep> steps = recipeStepDao.getAllRecipeStepsByRecipeId(recipe.getId());
-            recipe.setSteps(steps);
-        }
-        return recipes;
+    public Flowable<List<Recipe>> getAllRecipes() {
+        return recipeDao.getAllRecipes();
     }
 }
