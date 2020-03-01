@@ -39,74 +39,12 @@ public class TopsyTurvyDataSource {
         Log.d(TAG, "createRecipe: the id: " + rowId);
     }
 
-    public void createRecipeStep (RecipeStep recipeStep, long recipeId) {
-    }
-
     public List<Recipe> getAllRecipes() {
-        List<Recipe> recipes = new ArrayList<>();
-        String selectQuery = "SELECT * FROM recipe";
-//        Cursor cursor = database.rawQuery(selectQuery, null);
-//
-//        try {
-//            while (cursor.moveToNext()) {
-//                //Get column indices
-//                int indexName = cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_NAME);
-//                int indexDescription = cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_DESCRIPTION);
-//                int indexImage = cursor.getColumnIndex(RecipeContract.RecipeEntry.COLUMN_IMAGE_RESOURCE_ID);
-//                int indexId = cursor.getColumnIndex(RecipeContract.RecipeEntry._ID);
-//
-//                //Get row values
-//                String name = cursor.getString(indexName);
-//                String description = cursor.getString(indexDescription);
-//                int image = cursor.getInt(indexImage);
-//                long _id = cursor.getLong(indexId);
-//
-//                Recipe recipe = new Recipe(name, description, image);
-//                recipe.setId(_id);
-//                recipes.add(recipe);
-//            }
-//        } finally {
-//            if (cursor != null && !cursor.isClosed()) {
-//                cursor.close();
-//            }
-//        }
+        List<Recipe> recipes = recipeDao.getAllRecipes();
+        for (Recipe recipe : recipes) {
+            List<RecipeStep> steps = recipeStepDao.getAllRecipeStepsByRecipeId(recipe.getId());
+            recipe.setSteps(steps);
+        }
         return recipes;
-    }
-
-    public void updateRecipe(Recipe recipe) {
-//        ContentValues values = getContentValues(recipe);
-//        String selection = RecipeContract.RecipeEntry._ID + " = ?";
-//        String[] selectionArgs = {String.valueOf(recipe.getId())};
-//        int count = database.update(RecipeContract.RecipeEntry.TABLE_NAME,
-//                values,
-//                selection,
-//                selectionArgs);
-//        Log.d(TAG, "number of records updated " + count);
-    }
-
-    private ContentValues getContentValues(Recipe recipe) {
-        ContentValues values = new ContentValues();
-        values.put(RecipeContract.RecipeEntry.COLUMN_NAME, recipe.getName());
-        values.put(RecipeContract.RecipeEntry.COLUMN_DESCRIPTION, recipe.getDescription());
-        values.put(RecipeContract.RecipeEntry.COLUMN_IMAGE_RESOURCE_ID, recipe.getImageResourceId());
-        return values;
-    }
-
-    public void deleteRecipe(Recipe recipe) {
-
-//        String selection = RecipeContract.RecipeEntry._ID + " = ?";
-//        String[] selectionArgs = {String.valueOf(recipe.getId())};
-//        int count = database.delete(RecipeContract.RecipeEntry.TABLE_NAME,
-//                selection,
-//                selectionArgs);
-//        Log.d(TAG, "number of records deleted " + count);
-    }
-
-    public void deleteAllRecipes() {
-
-//        int count = database.delete(RecipeContract.RecipeEntry.TABLE_NAME,
-//                null,
-//                null);
-//        Log.d(TAG, "number of records deleted " + count);
     }
 }

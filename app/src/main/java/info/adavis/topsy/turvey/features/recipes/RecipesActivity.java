@@ -54,32 +54,16 @@ public class RecipesActivity extends AppCompatActivity
                 for (Recipe recipe : RecipesDataProvider.recipesList) {
                     dataSource.createRecipe(recipe);
                 }
-                return new ArrayList<>();
+                return dataSource.getAllRecipes();
             }
 
             @Override
             protected void onPostExecute(List<Recipe> recipes) {
                 super.onPostExecute(recipes);
+                adapter.setRecipes(recipes);
+                adapter.notifyDataSetChanged();
             }
         }.execute();
-
-//        List<Recipe> recipes = getRecipes();
-//        Recipe updatedRecipe = recipes.get(0);
-//        updatedRecipe.setName("Yellow Cake");
-//
-//        dataSource.deleteRecipe(updatedRecipe);
-//        dataSource.deleteAllRecipes();
-//        getRecipes();
-    }
-
-    private List<Recipe> getRecipes() {
-        List<Recipe> recipes = dataSource.getAllRecipes();
-        for (Recipe recipe :
-                recipes) {
-            Log.d(TAG, "the recipe is " + recipe);
-        }
-        adapter.setRecipes(recipes);
-        return recipes;
     }
 
     private void setupRecyclerView () {
@@ -90,5 +74,4 @@ public class RecipesActivity extends AppCompatActivity
         adapter = new RecipesAdapter( this );
         recipesRecyclerView.setAdapter( adapter );
     }
-
 }

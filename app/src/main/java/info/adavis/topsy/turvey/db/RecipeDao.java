@@ -3,6 +3,9 @@ package info.adavis.topsy.turvey.db;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+
+import java.util.List;
 
 import info.adavis.topsy.turvey.models.Recipe;
 
@@ -13,5 +16,7 @@ public interface RecipeDao {
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     long createRecipe (Recipe recipe);
 
+    @Query("SELECT * FROM recipe")
+    List<Recipe> getAllRecipes();
 
 }

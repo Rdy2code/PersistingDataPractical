@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.List;
 
-@Entity
+@Entity (tableName = "recipe")
 public class Recipe
 {
     @PrimaryKey (autoGenerate = true)
