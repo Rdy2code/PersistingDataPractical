@@ -2,10 +2,8 @@ package info.adavis.topsy.turvey.models;
 
 public class RecipeStep
 {
-    private long id;
-
-    private long recipeId;
-
+    //Cupboard is not an ORM solution, so we remove the ID fields, as the steps will not just
+    //be stored in the recipe table as a JSON
     private int stepNumber;
 
     private String instruction;
@@ -14,26 +12,6 @@ public class RecipeStep
     {
         this.stepNumber = stepNumber;
         this.instruction = instruction;
-    }
-
-    public long getId ()
-    {
-        return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
-    }
-
-    public long getRecipeId()
-    {
-        return recipeId;
-    }
-
-    public void setRecipeId(long recipeId)
-    {
-        this.recipeId = recipeId;
     }
 
     public int getStepNumber()
@@ -54,16 +32,5 @@ public class RecipeStep
     public void setInstruction(String instruction)
     {
         this.instruction = instruction;
-    }
-
-    @Override
-    public String toString ()
-    {
-        return "RecipeStep{" +
-                "id=" + id +
-                ", recipeId=" + recipeId +
-                ", stepNumber=" + stepNumber +
-                ", instruction='" + instruction + '\'' +
-                '}';
     }
 }

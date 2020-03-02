@@ -96,6 +96,7 @@
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.6@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.10.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.14.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: nl.qbusict:cupboard:2.2.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: im.dino:dbinspector:4.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0@aar" level="project" />

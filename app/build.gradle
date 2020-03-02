@@ -28,4 +28,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     debugImplementation 'im.dino:dbinspector:4.0.0'
+
+    //Cupboard
+    implementation 'nl.qbusict:cupboard:2.2.0'
 }

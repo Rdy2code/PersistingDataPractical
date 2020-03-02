@@ -2,9 +2,11 @@ package info.adavis.topsy.turvey.models;
 
 import java.util.List;
 
+import nl.qbusict.cupboard.annotation.Ignore;
+
 public class Recipe
 {
-    private long id;
+    private Long _id;       //Cupboard expects _id
 
     private String name;
 
@@ -12,7 +14,8 @@ public class Recipe
 
     private int imageResourceId;
 
-    private List<RecipeStep> steps;
+    @Ignore
+    private List<RecipeStep> steps;     //Cupboard does not support List fields
 
     public Recipe (String name, String description, int imageResourceId)
     {
@@ -21,14 +24,14 @@ public class Recipe
         this.imageResourceId = imageResourceId;
     }
 
-    public long getId ()
+    public Long getId ()
     {
-        return id;
+        return _id;
     }
 
-    public void setId(long id)
+    public void setId(Long id)
     {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName()
@@ -69,17 +72,5 @@ public class Recipe
     public void setSteps(List<RecipeStep> steps)
     {
         this.steps = steps;
-    }
-
-    @Override
-    public String toString ()
-    {
-        return "Recipe{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageResourceId=" + imageResourceId +
-                ", steps=" + steps +
-                '}';
     }
 }

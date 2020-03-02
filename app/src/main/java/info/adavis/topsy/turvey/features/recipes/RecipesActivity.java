@@ -1,15 +1,10 @@
 package info.adavis.topsy.turvey.features.recipes;
 
 import android.os.Bundle;
-import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
-import java.util.List;
-
 import info.adavis.topsy.turvey.R;
 import info.adavis.topsy.turvey.db.RecipesDataProvider;
 import info.adavis.topsy.turvey.db.TopsyTurvyDataSource;
@@ -52,24 +47,24 @@ public class RecipesActivity extends AppCompatActivity
             dataSource.createRecipe(recipe);
         }
 
-        List<Recipe> recipes = getRecipes();
-        Recipe updatedRecipe = recipes.get(0);
-        //updatedRecipe.setName("Yellow Cake");
-
-        //dataSource.deleteRecipe(updatedRecipe);
-        //dataSource.deleteAllRecipes();
-        getRecipes();
+//        List<Recipe> recipes = getRecipes();
+//        Recipe updatedRecipe = recipes.get(0);
+//        //updatedRecipe.setName("Yellow Cake");
+//
+//        //dataSource.deleteRecipe(updatedRecipe);
+//        //dataSource.deleteAllRecipes();
+//        getRecipes();
     }
 
-    private List<Recipe> getRecipes() {
-        List<Recipe> recipes = dataSource.getAllRecipes();
-        for (Recipe recipe :
-                recipes) {
-            Log.d(TAG, "the recipe is " + recipe);
-        }
-        adapter.setRecipes(recipes);
-        return recipes;
-    }
+//    private List<Recipe> getRecipes() {
+//        List<Recipe> recipes = dataSource.getAllRecipes();
+//        for (Recipe recipe :
+//                recipes) {
+//            Log.d(TAG, "the recipe is " + recipe);
+//        }
+//        adapter.setRecipes(recipes);
+//        return recipes;
+//    }
 
     @Override
     protected void onPause ()
