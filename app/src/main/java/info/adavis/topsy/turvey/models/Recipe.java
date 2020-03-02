@@ -27,6 +27,10 @@ public class Recipe
     @Ignore
     private List<RecipeStep> steps;
 
+    //Add a new field to Recipe class
+    @ColumnInfo(name = "number_of_stars")
+    private Integer numberOfStars;
+
     public Recipe (String name, String description, int imageResourceId)
     {
         this.name = name;
@@ -94,5 +98,13 @@ public class Recipe
                 ", imageResourceId=" + imageResourceId +
                 ", steps=" + steps +
                 '}';
+    }
+
+    public Integer getNumberOfStars() {
+        return numberOfStars;
+    }
+
+    public void setNumberOfStars(Integer numberOfStars) {
+        this.numberOfStars = numberOfStars;
     }
 }
