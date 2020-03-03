@@ -14,8 +14,8 @@ public class Recipe
 
     private int imageResourceId;
 
-    @Ignore
-    private List<RecipeStep> steps;     //Cupboard does not support List fields
+    private List<RecipeStep> steps;     //Cupboard does not support List fields. Use FieldConverterFactory
+                                        //in the DatabaseSQLiteOpenHelper class
 
     public Recipe (String name, String description, int imageResourceId)
     {

@@ -7,7 +7,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
+
 import info.adavis.topsy.turvey.models.Recipe;
+import nl.littlerobots.cupboard.tools.gson.GsonListFieldConverterFactory;
 import nl.qbusict.cupboard.CupboardBuilder;
 import nl.qbusict.cupboard.CupboardFactory;
 
@@ -30,8 +33,11 @@ public class DatabaseSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     static {
-        //Set Cupboard to handle annotations
-        CupboardFactory.setCupboard(new CupboardBuilder().useAnnotations().build());
+        //Register the FieldConverterFactory so that we can convert the list of recipe steps to JSON
+        CupboardFactory.setCupboard(
+                new CupboardBuilder()
+                .registerFieldConverterFactory(new GsonListFieldConverterFactory(new Gson()))
+                .build());
         //Register the model class
         cupboard().register(Recipe.class);
     }

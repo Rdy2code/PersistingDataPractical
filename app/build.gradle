@@ -31,4 +31,6 @@ dependencies {
 
     //Cupboard
     implementation 'nl.qbusict:cupboard:2.2.0'
+    implementation 'nl.littlerobots.cupboard-tools:gson:0.3.1'
+
 }

@@ -39,7 +39,7 @@ public class TopsyTurvyDataSource {
     }
 
     public void createRecipe (Recipe recipe) {
-        //Add a record to the database
+        //Add a record to the database with Cupboard
         long rowId = cupboard().withDatabase(database).put(recipe);
         Log.d(TAG, "recipe with id: " + rowId);
     }
