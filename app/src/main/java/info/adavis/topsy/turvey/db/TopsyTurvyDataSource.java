@@ -57,5 +57,16 @@ public class TopsyTurvyDataSource {
                 .query(Recipe.class)
                 .list();
     }
+
+    //Replace a record with an updated Recipe object
+    public void updateRecipe (Recipe recipe) {
+        cupboard().withDatabase(database)
+                .put(recipe);
+    }
+
+    public void deleteRecipe (Recipe recipe) {
+        cupboard().withDatabase(database)
+                .delete(recipe);
+    }
     //endregion
 }

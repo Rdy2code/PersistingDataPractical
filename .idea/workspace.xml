@@ -18,10 +18,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/Recipe.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-415">
-              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+            <state relative-caret-position="102">
+              <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -108,7 +106,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/Recipe.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
@@ -128,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="97">
+              <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
               <folding>
                 <element signature="e#466#484#0" />
                 <element signature="e#588#610#0" />
@@ -172,9 +170,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/RecipeStep.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/DatabaseSQLiteOpenHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/Recipe.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java" />
       </list>
     </option>
   </component>
@@ -458,7 +456,7 @@
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.3465704" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32851985" />
+      <window_info anchor="bottom" id="Terminal" order="4" visible="true" weight="0.32851985" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32851985" />
@@ -557,25 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#466#484#0" />
-            <element signature="e#588#610#0" />
-            <element signature="e#788#808#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-415">
-          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/models/Recipe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -590,6 +569,25 @@
             <element signature="e#1150#1151#0" expanded="true" />
             <element signature="e#1206#1207#0" expanded="true" />
             <element signature="e#1240#1241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/features/recipes/RecipesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/adavis/topsy/turvey/db/TopsyTurvyDataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding>
+            <element signature="e#466#484#0" />
+            <element signature="e#588#610#0" />
+            <element signature="e#788#808#0" />
           </folding>
         </state>
       </provider>
