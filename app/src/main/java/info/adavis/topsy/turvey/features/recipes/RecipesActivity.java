@@ -55,8 +55,12 @@ public class RecipesActivity extends AppCompatActivity
         //then update a field in the object, then place it back in the table
         List<Recipe> allRecipes = getRecipes();
         Recipe recipe = allRecipes.get(0);
-        recipe.setDescription("Wonderful yellow cake!");
-        dataSource.updateRecipe(recipe);
+        //recipe.setDescription("Wonderful yellow cake!");
+        //dataSource.updateRecipe(recipe);
+        //dataSource.deleteRecipe(recipe);        //To delete a recipe call delete; to update a recipe
+                                                //use the update call as shown above
+
+        dataSource.deleteAllRecipes();
         getRecipes();
     }
 

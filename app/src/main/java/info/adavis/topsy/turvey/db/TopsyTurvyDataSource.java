@@ -68,5 +68,11 @@ public class TopsyTurvyDataSource {
         cupboard().withDatabase(database)
                 .delete(recipe);
     }
+
+    public void deleteAllRecipes () {
+        cupboard().withDatabase(database)
+                .delete(Recipe.class, null);
+    }
+
     //endregion
 }
