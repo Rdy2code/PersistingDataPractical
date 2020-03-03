@@ -16,6 +16,8 @@ public class Recipe {
     private List<RecipeStep> steps;     //Cupboard does not support List fields. Use FieldConverterFactory
                                         //in the DatabaseSQLiteOpenHelper class
 
+    private Integer numberOfStars;  //Use Integer type to allow for null values
+
     public Recipe () {                  //Zero argument constructor
 
     }
@@ -75,5 +77,13 @@ public class Recipe {
     public void setSteps(List<RecipeStep> steps)
     {
         this.steps = steps;
+    }
+
+    public int getNumberOfStars() {
+        return numberOfStars;
+    }
+
+    public void setNumberOfStars(int numberOfStars) {
+        this.numberOfStars = numberOfStars;
     }
 }

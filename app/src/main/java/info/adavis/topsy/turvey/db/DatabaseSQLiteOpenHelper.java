@@ -1,5 +1,6 @@
 package info.adavis.topsy.turvey.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -23,7 +24,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 public class DatabaseSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "topsy_turvey.db";
-    public static final int VERSION_NUMBER = 1;
+    public static final int VERSION_NUMBER = 2; //Change this value when you want to update table schema
 
     public DatabaseSQLiteOpenHelper(Context context) {
         //Don't need factory, so make it null. Also use custom constants in super call, since
@@ -50,9 +51,16 @@ public class DatabaseSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        //For development purposes, drop and then create the table
-        cupboard().withDatabase(sqLiteDatabase).dropAllTables();
-        cupboard().withDatabase(sqLiteDatabase).createTables();
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+//        //For development purposes, drop and then create the table
+//        cupboard().withDatabase(sqLiteDatabase).dropAllTables();
+//        cupboard().withDatabase(sqLiteDatabase).createTables();
+
+        cupboard().withDatabase(sqLiteDatabase).upgradeTables();;
+        if (oldVersion == 1) {
+            ContentValues values = new ContentValues();
+            values.put("numberOfStars", 5);
+            cupboard().withDatabase(sqLiteDatabase).update(Recipe.class, values);
+        }
     }
 }
