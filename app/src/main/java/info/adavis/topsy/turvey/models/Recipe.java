@@ -4,8 +4,7 @@ import java.util.List;
 
 import nl.qbusict.cupboard.annotation.Ignore;
 
-public class Recipe
-{
+public class Recipe {
     private Long _id;       //Cupboard expects _id
 
     private String name;
@@ -16,6 +15,10 @@ public class Recipe
 
     private List<RecipeStep> steps;     //Cupboard does not support List fields. Use FieldConverterFactory
                                         //in the DatabaseSQLiteOpenHelper class
+
+    public Recipe () {                  //Zero argument constructor
+
+    }
 
     public Recipe (String name, String description, int imageResourceId)
     {

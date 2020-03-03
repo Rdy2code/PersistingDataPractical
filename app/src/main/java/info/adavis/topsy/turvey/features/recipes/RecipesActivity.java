@@ -36,8 +36,7 @@ public class RecipesActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume ()
-    {
+    protected void onResume () {
         super.onResume();
         dataSource.open();
 
@@ -46,6 +45,8 @@ public class RecipesActivity extends AppCompatActivity
         for (Recipe recipe : RecipesDataProvider.recipesList) {
             dataSource.createRecipe(recipe);
         }
+
+        adapter.setRecipes(dataSource.getAllRecipes());
 
 //        List<Recipe> recipes = getRecipes();
 //        Recipe updatedRecipe = recipes.get(0);
