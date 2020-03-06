@@ -49,8 +49,7 @@ public class RecipesActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onPause ()
-    {
+    protected void onPause () {
         super.onPause();
         dataSource.close();
     }
@@ -59,9 +58,7 @@ public class RecipesActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recipesRecyclerView.setLayoutManager(layoutManager);
-
         recipesRecyclerView.setHasFixedSize(true);
-
         adapter = new RecipesAdapter( this );
         recipesRecyclerView.setAdapter( adapter );
     }
