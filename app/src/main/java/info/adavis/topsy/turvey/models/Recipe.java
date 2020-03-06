@@ -1,18 +1,24 @@
 package info.adavis.topsy.turvey.models;
 
 import java.util.List;
+import java.util.UUID;
 
-public class Recipe
-{
-    private long id;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Recipe extends RealmObject {
+
+    public Recipe() {
+    }
+
+    @PrimaryKey         //Realm annotation
+    private String id = UUID.randomUUID().toString();
 
     private String name;
 
     private String description;
 
     private int imageResourceId;
-
-    private List<RecipeStep> steps;
 
     public Recipe (String name, String description, int imageResourceId)
     {
@@ -21,12 +27,12 @@ public class Recipe
         this.imageResourceId = imageResourceId;
     }
 
-    public long getId ()
+    public String getId ()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(String id)
     {
         this.id = id;
     }
@@ -59,27 +65,5 @@ public class Recipe
     public void setImageResourceId(int imageResourceId)
     {
         this.imageResourceId = imageResourceId;
-    }
-
-    public List<RecipeStep> getSteps()
-    {
-        return steps;
-    }
-
-    public void setSteps(List<RecipeStep> steps)
-    {
-        this.steps = steps;
-    }
-
-    @Override
-    public String toString ()
-    {
-        return "Recipe{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageResourceId=" + imageResourceId +
-                ", steps=" + steps +
-                '}';
     }
 }

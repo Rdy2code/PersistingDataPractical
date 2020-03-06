@@ -29,10 +29,6 @@ public class RecipesDataProvider
 
     private static void addRecipe(Recipe recipe, RecipeStep... steps)
     {
-        if (steps.length > 0)
-        {
-            recipe.setSteps(Arrays.asList(steps));
-        }
         recipesList.add( recipe );
     }
 }

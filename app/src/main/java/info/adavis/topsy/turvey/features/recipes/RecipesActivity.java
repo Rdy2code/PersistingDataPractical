@@ -35,40 +35,17 @@ public class RecipesActivity extends AppCompatActivity
 
         recipesRecyclerView = (RecyclerView) findViewById(R.id.recipes_recycler_view);
 
-        dataSource = new TopsyTurvyDataSource (this);
-
+        dataSource = new TopsyTurvyDataSource ();
+        dataSource.open();
         setupRecyclerView();
     }
 
     @Override
-    protected void onResume ()
-    {
+    protected void onResume () {
         super.onResume();
-        dataSource.open();
-
-        //Add recipes to the database. For testing purposes, use a static list from the DataProvider
-        //and a for loop to iterate the list. Can this logic be placed in the abstraction layer?
         for (Recipe recipe : RecipesDataProvider.recipesList) {
             dataSource.createRecipe(recipe);
         }
-
-        List<Recipe> recipes = getRecipes();
-        Recipe updatedRecipe = recipes.get(0);
-        //updatedRecipe.setName("Yellow Cake");
-
-        //dataSource.deleteRecipe(updatedRecipe);
-        //dataSource.deleteAllRecipes();
-        getRecipes();
-    }
-
-    private List<Recipe> getRecipes() {
-        List<Recipe> recipes = dataSource.getAllRecipes();
-        for (Recipe recipe :
-                recipes) {
-            Log.d(TAG, "the recipe is " + recipe);
-        }
-        adapter.setRecipes(recipes);
-        return recipes;
     }
 
     @Override
@@ -78,8 +55,7 @@ public class RecipesActivity extends AppCompatActivity
         dataSource.close();
     }
 
-    private void setupRecyclerView ()
-    {
+    private void setupRecyclerView () {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recipesRecyclerView.setLayoutManager(layoutManager);
@@ -89,5 +65,4 @@ public class RecipesActivity extends AppCompatActivity
         adapter = new RecipesAdapter( this );
         recipesRecyclerView.setAdapter( adapter );
     }
-
 }

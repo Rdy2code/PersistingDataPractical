@@ -1,8 +1,16 @@
 package info.adavis.topsy.turvey.models;
 
-public class RecipeStep
-{
-    private long id;
+public class RecipeStep {
+
+    public RecipeStep() {
+    }
+
+    public RecipeStep (int stepNumber, String instruction) {
+        this.stepNumber = stepNumber;
+        this.instruction = instruction;
+    }
+
+    private String id;
 
     private long recipeId;
 
@@ -10,18 +18,12 @@ public class RecipeStep
 
     private String instruction;
 
-    public RecipeStep (int stepNumber, String instruction)
-    {
-        this.stepNumber = stepNumber;
-        this.instruction = instruction;
-    }
-
-    public long getId ()
+    public String getId ()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(String id)
     {
         this.id = id;
     }
@@ -56,14 +58,4 @@ public class RecipeStep
         this.instruction = instruction;
     }
 
-    @Override
-    public String toString ()
-    {
-        return "RecipeStep{" +
-                "id=" + id +
-                ", recipeId=" + recipeId +
-                ", stepNumber=" + stepNumber +
-                ", instruction='" + instruction + '\'' +
-                '}';
-    }
 }
