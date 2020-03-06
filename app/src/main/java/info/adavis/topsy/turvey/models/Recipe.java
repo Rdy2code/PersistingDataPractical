@@ -3,14 +3,25 @@ package info.adavis.topsy.turvey.models;
 import java.util.List;
 import java.util.UUID;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Recipe extends RealmObject {
 
+    //region Constructors
     public Recipe() {
     }
 
+    public Recipe (String name, String description, int imageResourceId)
+    {
+        this.name = name;
+        this.description = description;
+        this.imageResourceId = imageResourceId;
+    }
+    //endregion
+
+    //region Instance Variables
     @PrimaryKey         //Realm annotation
     private String id = UUID.randomUUID().toString();
 
@@ -20,25 +31,27 @@ public class Recipe extends RealmObject {
 
     private int imageResourceId;
 
-    public Recipe (String name, String description, int imageResourceId)
-    {
-        this.name = name;
-        this.description = description;
-        this.imageResourceId = imageResourceId;
+    //Connect with RecipeStep model by way of RealmList and include getter and setters
+    private RealmList<RecipeStep> recipeSteps;
+    //endregion
+
+    public RealmList<RecipeStep> getRecipeSteps() {
+        return recipeSteps;
     }
 
-    public String getId ()
-    {
+    public void setRecipeSteps(RealmList<RecipeStep> recipeSteps) {
+        this.recipeSteps = recipeSteps;
+    }
+
+    public String getId () {
         return id;
     }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 

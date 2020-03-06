@@ -1,6 +1,11 @@
 package info.adavis.topsy.turvey.models;
 
-public class RecipeStep {
+import java.util.UUID;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class RecipeStep extends RealmObject {
 
     public RecipeStep() {
     }
@@ -10,7 +15,9 @@ public class RecipeStep {
         this.instruction = instruction;
     }
 
-    private String id;
+    @PrimaryKey
+    //Set Id to a unique string with UUID method
+    private String id = UUID.randomUUID().toString();
 
     private long recipeId;
 
