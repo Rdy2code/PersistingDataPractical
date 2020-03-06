@@ -29,4 +29,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     debugImplementation 'im.dino:dbinspector:4.0.0'
+
+    //Realm
+    annotationProcessor 'dk.ilios:realmfieldnameshelper:1.1.1'
+
+
+
 }

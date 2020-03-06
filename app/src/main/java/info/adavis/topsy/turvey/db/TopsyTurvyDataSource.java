@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.adavis.topsy.turvey.models.Recipe;
+import info.adavis.topsy.turvey.models.RecipeFields;
 import info.adavis.topsy.turvey.models.RecipeStep;
 import io.realm.Realm;
 
@@ -35,8 +36,8 @@ public class TopsyTurvyDataSource {
         Log.d(TAG, "database is closed");
     }
 
+    //Insert a record
     public void createRecipe (final Recipe recipe) {
-
         //Insert records into database via Realm
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -44,5 +45,20 @@ public class TopsyTurvyDataSource {
                 realm.insert(recipe);
             }
         });
+    }
+
+    //Get (query) all records
+    public List<Recipe> getAllRecipes() {
+        return realm.where(Recipe.class).findAll();
+    }
+
+    //Get recipes that have steps
+    public List<Recipe> getRecipesWithSteps() {
+        return realm.where(Recipe.class).isNotEmpty(RecipeFields.RECIPE_STEPS.$).findAll();
+    }
+
+    //Get recipes with an "ie" in the name
+    public List<Recipe> getRecipesWithIE() {
+        return realm.where(Recipe.class).contains(RecipeFields.NAME, "ie").findAll();
     }
 }
