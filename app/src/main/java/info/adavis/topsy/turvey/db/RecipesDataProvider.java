@@ -30,6 +30,8 @@ public class RecipesDataProvider
 
     private static void addRecipe(Recipe recipe, RecipeStep... steps) {
 
+        //After establishing the RealmList in the RecipeStep model class, add this logic
+        //to populate it
         if (steps.length > 0) {
             //Initialize an empty RealmList of type RecipeStep object and add this field to the Recipe object
             recipe.setRecipeSteps(new RealmList<RecipeStep>());

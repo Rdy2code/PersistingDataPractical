@@ -1,34 +1,31 @@
 package info.adavis.topsy.turvey.features.recipes;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
-import java.util.List;
+import com.squareup.picasso.Picasso;
 
 import info.adavis.topsy.turvey.R;
 import info.adavis.topsy.turvey.models.Recipe;
+import io.realm.OrderedRealmCollection;
+import io.realm.RealmRecyclerViewAdapter;
 
-public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder>
-{
-    private List<Recipe> recipes = Collections.emptyList();
-    private Context context;
+/**
+ * The RealmRecyclerViewAdapter automatically handles updates to its data and calls
+ * notifyDataSetChanged()
+ * Realm will get a list of Recipe objects for us and we can access these with getData()
+ */
 
-    public RecipesAdapter(Context context)
-    {
-        this.context = context;
-    }
+public class RecipesAdapter extends RealmRecyclerViewAdapter<Recipe, RecipesAdapter.ViewHolder> {
 
-    void setRecipes (List<Recipe> recipes)
-    {
-        this.recipes = recipes;
+    public RecipesAdapter(@Nullable OrderedRealmCollection<Recipe> data, boolean autoUpdate) {
+        super(data, autoUpdate);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -58,7 +55,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     @Override
     public void onBindViewHolder (ViewHolder holder, int position)
     {
-        Recipe recipe = recipes.get( position );
+        Recipe recipe = getData().get( position );  //Access underlying data stored in Realm using getData()
 
         holder.recipeName.setText(recipe.getName());
         holder.recipeDescription.setText(recipe.getDescription());
@@ -69,11 +66,4 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
                .centerCrop()
                .into(holder.recipeImage);
     }
-
-    @Override
-    public int getItemCount ()
-    {
-        return this.recipes.size();
-    }
-
 }

@@ -31,9 +31,12 @@ public class Recipe extends RealmObject {
 
     private int imageResourceId;
 
+    //region Relationship between Recipe and RecipeStep classes
     //Connect with RecipeStep model by way of RealmList and include getter and setters
     private RealmList<RecipeStep> recipeSteps;
     //endregion
+
+    private Integer numberOfStars; //Add a new field here. Once we add a new field we must add a migration class
 
     public RealmList<RecipeStep> getRecipeSteps() {
         return recipeSteps;
@@ -42,6 +45,7 @@ public class Recipe extends RealmObject {
     public void setRecipeSteps(RealmList<RecipeStep> recipeSteps) {
         this.recipeSteps = recipeSteps;
     }
+    //endregion
 
     public String getId () {
         return id;

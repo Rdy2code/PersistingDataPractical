@@ -11,6 +11,8 @@ import io.realm.RealmConfiguration;
 
 public class TopsyTurveyApplication extends Application {
 
+    private int SCHEMA_VERSION = 2;     //Change the version here after adding the new field
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,11 +21,10 @@ public class TopsyTurveyApplication extends Application {
 
         //Define custom configuration
         RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .schemaVersion(SCHEMA_VERSION)  //Supply Schema version number for future migrations
+                .migration(new Migration())
                 .name("topsy_turvey.realm")
-                .deleteRealmIfMigrationNeeded()
                 .build();
-
-        Realm.deleteRealm(configuration);
 
         Realm.setDefaultConfiguration(configuration);
     }

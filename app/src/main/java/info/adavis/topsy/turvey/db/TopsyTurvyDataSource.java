@@ -13,6 +13,7 @@ import info.adavis.topsy.turvey.models.Recipe;
 import info.adavis.topsy.turvey.models.RecipeFields;
 import info.adavis.topsy.turvey.models.RecipeStep;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class TopsyTurvyDataSource {
 
@@ -38,27 +39,64 @@ public class TopsyTurvyDataSource {
 
     //Insert a record
     public void createRecipe (final Recipe recipe) {
-        //Insert records into database via Realm
+        //Insert records into database via Realm transaction
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                realm.insert(recipe);
+                realm.insertOrUpdate(recipe);
             }
         });
     }
 
     //Get (query) all records
-    public List<Recipe> getAllRecipes() {
+    //For Realm queries you just need access to a defaultInstance of Realm
+    public RealmResults<Recipe> getAllRecipes() {
         return realm.where(Recipe.class).findAll();
     }
 
     //Get recipes that have steps
-    public List<Recipe> getRecipesWithSteps() {
+    //Use Realm Field Names class
+    public RealmResults<Recipe> getRecipesWithSteps() {
         return realm.where(Recipe.class).isNotEmpty(RecipeFields.RECIPE_STEPS.$).findAll();
     }
 
     //Get recipes with an "ie" in the name
-    public List<Recipe> getRecipesWithIE() {
+    public RealmResults<Recipe> getRecipesWithIE() {
         return realm.where(Recipe.class).contains(RecipeFields.NAME, "ie").findAll();
     }
+
+    public void modifyDescription () {
+        //Get a managed Recipe instance
+        final Recipe recipe = realm.where(Recipe.class).findFirst();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                recipe.setDescription("Wonderful Yellow Cake!");
+            }
+        });
+
+    }
+
+    public void deleteRecipe (Recipe recipe) {
+        final Recipe recipeManaged =
+                realm.where(Recipe.class).equalTo(RecipeFields.ID, recipe.getId()).findFirst();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                recipeManaged.deleteFromRealm();
+            }
+        });
+    }
+
+    public void deleteAllRecipes () {
+
+        final RealmResults<Recipe> recipes = realm.where(Recipe.class).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                recipes.deleteAllFromRealm();
+            }
+        });
+    }
+
 }
